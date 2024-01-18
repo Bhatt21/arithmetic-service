@@ -16,24 +16,21 @@
     <input type="number" id="value2" name="value2" required>
 
     <button type="button" onclick="calculate()"> = </button>
-    <label for="sum"> </label>
-    <output type="number" id="sum" name="sum">
+    <label for="result"> </label>
+    <output type="number" id="result" name="result">
   </form>
 
 
 
   <script>
     function calculate() {
-      // Get input values
       const value1 = document.getElementById('value1').value;
       const value2 = document.getElementById('value2').value;
 
-      // Make GET request to the API
       fetch(`/sum/${value1}/${value2}`)
         .then(response => response.json())
         .then(data => {
-          // Display the result inside the result box
-          const resultBox = document.getElementById('sum');
+          const resultBox = document.getElementById('result');
           resultBox.innerHTML = `<strong>${data.sum}</strong>`;
         })
         .catch(error => {
