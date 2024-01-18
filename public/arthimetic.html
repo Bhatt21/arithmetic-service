@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <h2>Calculate Sum</h2>
+
+  <form id="calculationForm">
+    <label for="value1">Value 1:</label>
+    <input type="number" id="value1" name="value1" required>
+
+    <label for="value2">Value 2:</label>
+    <input type="number" id="value2" name="value2" required>
+
+    <button type="button" onclick="calculate()"> = </button>
+    <div id="resultBox">
+      <strong>Result:</strong>
+      <div id="result"></div>
+    </div>
+  </form>
+
+
+
+  <script>
+    function calculate() {
+      // Get input values
+      const value1 = document.getElementById('value1').value;
+      const value2 = document.getElementById('value2').value;
+
+      // Make GET request to the API
+      fetch(`/sum/${value1}/${value2}`)
+        .then(response => response.json())
+        .then(data => {
+          // Display the result inside the result box
+          const resultBox = document.getElementById('result');
+          resultBox.innerHTML = `<strong>${data.sum}</strong>`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+
+</body>
+</html>
