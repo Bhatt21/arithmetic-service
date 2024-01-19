@@ -1,2 +1,2 @@
 # arithmetic-service-
-by Saket Bhatt
+by Saket Bhatt, Siddharth Bisht
