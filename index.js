@@ -3,7 +3,10 @@ const path = require('path');
 const { add } = require('./arithmetica');
 const app = express();
 const port  = 3000;
+const express = require('express');
+const cors = require('cors')
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
