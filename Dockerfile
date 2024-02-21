@@ -7,6 +7,10 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
+COPY index.js ./
+COPY public ./
+COPY arithmetica.js ./
+
 # Install dependencies
 RUN npm install
 
