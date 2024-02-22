@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .column {
+           float: left;
+           width: 50%;
+           padding: 10px;
+           box-sizing: border-box;
+          
+        }
+        .row::after {
+           content: "";
+           clear: both;
+           display: table;
+        }
+     </style>
 </head>
 <body>
+    <div class="row">
+        <div class="column">          
+           <section>
+            <h2>Arithmetic</h2>
+            <input id="operand1"/> 
+            <label>+</label>
+            <input id="operand2"/>
+            <button onclick="add()">=</button>
+            <label id="sum"></label>  
+        </section>
+        </div>
+        <div class="column">
+            <section>
+                <h2>Prime check</h2>                
+                <label>Number to test:</label>
+                <input id="numberToTest"/>
+                <button onclick="isPrime()">Check</button>
+                <label id="primeCheckResult"></label>  
+            </section>           
+        </div>       
+     </div>
+    
+   
+    <script>
+        async function add() {
+            const operand1Input = document.getElementById("operand1");
+            const operand2Input = document.getElementById("operand2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+            const response = await fetch("sum/" + n + "/" + m);
+            const data = await response.json();
+            document.getElementById("sum").innerText = data.sum;
+        }
 
-  <h2>Calculate Sum</h2>
-
-  <form id="calculationForm">
-    <label for="value1">Value 1:</label>
-    <input type="number" id="value1" name="value1" required>
-
-    <label for="value2">Value 2:</label>
-    <input type="number" id="value2" name="value2" required>
-
-    <button type="button" onclick="calculate()"> = </button>
-    <label for="result"> </label>
-    <output type="number" id="result" name="result">
-  </form>
-
-
-
-  <script>
-    function calculate() {
-      const value1 = document.getElementById('value1').value;
-      const value2 = document.getElementById('value2').value;
-
-      fetch(`/sum/${value1}/${value2}`)
-        .then(response => response.json())
-        .then(data => {
-          const resultBox = document.getElementById('result');
-          resultBox.innerHTML = `<strong>${data.sum}</strong>`;
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }
-  </script>
-
+        async function isPrime() {
+            const numberToTest = document.getElementById("numberToTest");            
+            let n = numberToTest.value;            
+            const response = await fetch("???" + n);
+            const result = await response.json();
+            document.getElementById("primeCheckResult").innerText = result;
+        }
+    </script>
 </body>
 </html>

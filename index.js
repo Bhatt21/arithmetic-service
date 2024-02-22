@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors')
-const { add } = require('./arithmetica');
+const { add, isPrime } = require('./arithmetica');
 const path = require('path');
 const app = express();
 const port  = 3000;
@@ -20,4 +20,11 @@ app.get('/sum/:num1/:num2', (req,resp) =>{
     resp.json({"sum": sum})
 
 })
+
+app.get('/check-prime/:num', (req, resp) => {
+  let number = parseInt(req.params.num);
+  let primeCheck = isPrime(number);
+  resp.json({"number": number, "isPrime": primeCheck});
+});
+
 app.listen(port)
